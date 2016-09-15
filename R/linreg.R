@@ -26,7 +26,25 @@
 #' @export
 
 linreg <- function(formula, data) {
-  linregObject <- LinregClass$new(formula = as.formula(formula),
-                             data = as.data.frame(data))
+  # Error handling -------------------------------------------------------------
+  # Check whether inputs can be coerced to formula and data.frame
+  canCoerse <- TRUE
+  tryCatch({
+    formula <- as.formula(formula)
+    data <- as.data.frame(data)
+  }, error = function(e) {
+    canCoerse <<- FALSE
+  })
+  if(!canCoerse) {
+    stop("wrong parameters")
+  }
+
+  # Check whether variables from formula are in data
+  if(!all(all.vars(formula) %in% colnames(data))) {
+    stop("variable(s) not in data")
+  }
+
+  # Body -----------------------------------------------------------------------
+  linregObject <- LinregClass$new(formula = formula, data = data)
   return(linregObject)
 }

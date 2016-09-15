@@ -14,7 +14,7 @@
 # Methods used in class --------------------------------------------------------
 coefficientsMethod <- function() {
   # Extracr X matrix and Y matrix (vector) from data and formula
-  X <- model.matrix(.self$formula)
+  X <- model.matrix(.self$formula, .self$data)
   yName <- all.vars(.self$formula)[1]
   Y <- .self$data[, yName]
 
