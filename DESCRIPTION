@@ -9,8 +9,11 @@ Authors@R: as.person(c(
   ))
 Maintainer: Sascha Schmalz <sassc662@student.liu.se>
 Description: Description placeholder.
-Depends: R (>= 3.3.1)
+Depends:
+    R (>= 3.3.1)
 License: GPLv3
 Encoding: UTF-8
 LazyData: true
-Suggests: testthat
+Suggests:
+    testthat
+RoxygenNote: 5.0.1
