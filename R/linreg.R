@@ -6,11 +6,11 @@
 #'   that can be coerced to that class): a symbolic description of the model to
 #'   be fitted.
 #' @param data a data frame or (or object coercible by
-#'   \code{\link{as.data.frame)}}
+#'   \code{\link{as.data.frame)}}.
 #'
-#' @return \code{linreg} returns an object of class "\code{linreg}".
+#' @return \code{linreg} returns an object of class "\code{Linreg}".
 #'
-#'   An object of class "\code{linreg}" have the following methods:
+#'   An object of class "\code{Linreg}" have the following methods:
 #'   \item{coefficients()}{a named vector of coefficients}
 #'   \item{residuals()}{the residuals, that is response minus fitted values}
 #'   \item{pred()}{predicted values of of a model}
@@ -26,5 +26,7 @@
 #' @export
 
 linreg <- function(formula, data) {
-  return(NULL)
+  linregObject <- LinregClass$new(formula = as.formula(formula),
+                             data = as.data.frame(data))
+  return(linregObject)
 }
