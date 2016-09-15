@@ -13,7 +13,14 @@
 
 # Methods used in class --------------------------------------------------------
 coefficientsMethod <- function() {
-  # Extracr X matrix and Y matrix (vector) from data and formula
+  # Calculates and returns coefficients of the model
+  #
+  # Args:
+  #
+  # Returns:
+  #   Named vector of estimated coefficients.
+
+  # Extract X matrix and Y matrix (vector) from data and formula
   X <- model.matrix(.self$formula, .self$data)
   yName <- all.vars(.self$formula)[1]
   Y <- .self$data[, yName]
@@ -27,10 +34,37 @@ coefficientsMethod <- function() {
   return(betaHat)
 }
 residualsMethod <- function() {
-  stop("method not implemented")
+  # Extract X matrix and Y matrix (vector) from data and formula
+  X <- model.matrix(.self$formula, .self$data)
+  yName <- all.vars(.self$formula)[1]
+  Y <- .self$data[yName]
+
+  # Get predicted values
+  yHat <- .self$pred()
+
+  epsilon <- Y - yHat
+
+  # Format in the same way as lm()
+  epsilonVector <- epsilon[, 1]
+  names(epsilonVector) <- rownames(epsilon)
+  epsilon <- epsilonVector
+
+  return(epsilon)
 }
 predMethod <- function() {
-  stop("method not implemented")
+  # Extract X matrix and Y matrix (vector) from data and formula
+  X <- model.matrix(.self$formula, .self$data)
+
+  # Get estimated coefficients
+  betaHat <- .self$coefficients()
+
+  yHat <- betaHat %*% t(X)
+  # # Format in the same way as lm()
+  yHatVector <- as.vector(yHat)
+  names(yHatVector) <- colnames(yHat)
+  yHat <- yHatVector
+
+  return(yHat)
 }
 
 # Class ------------------------------------------------------------------------
