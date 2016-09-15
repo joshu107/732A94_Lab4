@@ -56,7 +56,7 @@ predMethod <- function() {
   X <- model.matrix(.self$formula, .self$data)
 
   # Get estimated coefficients
-  betaHat <- .self$coefficients()
+  betaHat <- .self$coef()
 
   yHat <- betaHat %*% t(X)
   # # Format in the same way as lm()
@@ -72,8 +72,8 @@ LinregClass <- setRefClass("Linreg",
                        fields = list(formula = "formula",
                                      data = "data.frame"),
                        methods = list(
-                         coefficients = coefficientsMethod,
-                         residuals = residualsMethod,
+                         coef = coefficientsMethod,
+                         resid = residualsMethod,
                          pred = predMethod
                        )
 )
