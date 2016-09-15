@@ -1,0 +1,15 @@
+Package: LinReg
+Title: Description placeholder.
+Version: 0.0.0.9000
+Authors@R: as.person(c(
+    "Torrin Danner <torda385@student.liu.se> [aut]",
+    "Joshua Hudson <joshu106@student.liu.se> [aut]"
+    "Sascha Schmalz <sassc662@student.liu.se> [aut, cre]", 
+    "Nikolajs Prihodko <nikpr874@student.liu.se> [aut]"
+  ))
+Maintainer: Sascha Schmalz <sassc662@student.liu.se>
+Description: Description placeholder.
+Depends: R (>= 3.3.1)
+License: GPLv3
+Encoding: UTF-8
+LazyData: true
