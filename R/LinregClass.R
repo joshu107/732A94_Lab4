@@ -60,7 +60,7 @@ storeCacheMethod <- function(method, value) {
 }
 
 coefficientsMethod <- function() {
-  # Calculates and returns coefficients of the model
+  # Calculates and returns coefficients of the model.
   #
   # Args:
   #
@@ -88,6 +88,18 @@ coefficientsMethod <- function() {
   return(betaHat)
 }
 residualsMethod <- function() {
+  # Calculates and returns residuals of the model.
+  #
+  # Args:
+  #
+  # Returns:
+  #   Named vector of residuals.
+
+  # Check if the result is already cached
+  if (isCached("resid")) {
+    retur(.self$cache$resid$value)
+  }
+
   # Extract X matrix and Y matrix (vector) from data and formula
   X <- model.matrix(.self$formula, .self$data)
   yName <- all.vars(.self$formula)[1]
@@ -103,9 +115,24 @@ residualsMethod <- function() {
   names(epsilonVector) <- rownames(epsilon)
   epsilon <- epsilonVector
 
+  # Store result in cache
+  storeCache("resid", epsilon)
+
   return(epsilon)
 }
 predMethod <- function() {
+  # Calculates and returns predicted values of the model
+  #
+  # Args:
+  #
+  # Returns:
+  #   Named vector of predicted values.
+
+  # Check if the result is cached
+  if (isCached("pred")) {
+    return(.self$cache$pred$value)
+  }
+
   # Extract X matrix and Y matrix (vector) from data and formula
   X <- model.matrix(.self$formula, .self$data)
 
@@ -117,6 +144,9 @@ predMethod <- function() {
   yHatVector <- as.vector(yHat)
   names(yHatVector) <- colnames(yHat)
   yHat <- yHatVector
+
+  # Store result in cache
+  storeCache("pred", yHat)
 
   return(yHat)
 }
