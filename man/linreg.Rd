@@ -4,20 +4,20 @@
 \alias{linreg}
 \title{Perform linear regression}
 \usage{
-linreg()
+linreg(formula, data)
 }
 \arguments{
+\item{data}{a data frame or (or object coercible by
+\code{\link{as.data.frame})}.}
+
 \item{formlua}{an object of \code{\link{class}} \code{\link{formula}} (or one
 that can be coerced to that class): a symbolic description of the model to
 be fitted.}
-
-\item{data}{a data frame or (or object coercible by
-\code{\link{as.data.frame)}}}
 }
 \value{
-\code{linreg} returns an object of class "\code{linreg}".
+\code{linreg} returns an object of class "\code{Linreg}".
 
-  An object of class "\code{linreg}" have the following methods:
+  An object of class "\code{Linreg}" have the following methods:
   \item{coefficients()}{a named vector of coefficients}
   \item{residuals()}{the residuals, that is response minus fitted values}
   \item{pred()}{predicted values of of a model}

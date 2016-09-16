@@ -3,9 +3,7 @@
 #' @field formlua an object of \code{\link{class}} \code{\link{formula}} (or one
 #'   that can be coerced to that class): a symbolic description of the model to
 #'   be fitted.
-#' @data data a data frame or (or object coercible by
-#'   \code{\link{as.data.frame)}}.
-
+"LinregClass"
 
 # Document structure:
 # 1. Define all methods used in class
@@ -66,6 +64,15 @@ predMethod <- function() {
 
   return(yHat)
 }
+printMethod<-function(x,...){
+
+}
+plotMethod<-function(x,...){
+  
+}
+summaryMethod<- function(x,...){
+  
+}
 
 # Class ------------------------------------------------------------------------
 LinregClass <- setRefClass("Linreg",
@@ -74,6 +81,10 @@ LinregClass <- setRefClass("Linreg",
                        methods = list(
                          coef = coefficientsMethod,
                          resid = residualsMethod,
-                         pred = predMethod
+                         pred = predMethod,
+                         print = printMethod,
+                         plot = plotMethod,
+                         summary = summaryMethod
+                         
                        )
 )
