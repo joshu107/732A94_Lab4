@@ -6,7 +6,7 @@
 #'   that can be coerced to that class): a symbolic description of the model to
 #'   be fitted.
 #' @param data a data frame or (or object coercible by
-#'   \code{\link{as.data.frame})}.
+#'   \code{\link{as.data.frame}}).
 #'
 #' @return \code{linreg} returns an object of class "\code{Linreg}".
 #'
