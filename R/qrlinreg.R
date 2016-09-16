@@ -26,9 +26,11 @@
 #' }
 #' @export
 
+
 qrlinreg <- function(){
   
 }
+
 
 #args(lsfit)
 
