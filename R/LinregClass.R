@@ -65,13 +65,13 @@ predMethod <- function() {
   return(yHat)
 }
 printMethod<-function(x,...){
-
+  stop("Method not implemented")
 }
 plotMethod<-function(x,...){
-  
+  stop("Method not implemented")
 }
 summaryMethod<- function(x,...){
-  
+  stop("Method not implemented")
 }
 
 # Class ------------------------------------------------------------------------
@@ -85,6 +85,6 @@ LinregClass <- setRefClass("Linreg",
                          print = printMethod,
                          plot = plotMethod,
                          summary = summaryMethod
-                         
+
                        )
 )
