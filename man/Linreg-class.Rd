@@ -3,7 +3,7 @@
 \docType{class}
 \name{Linreg-class}
 \alias{Linreg-class}
-\alias{LinregClass}
+\alias{isCachedMethod}
 \title{A Reference Class to a linear regression model.}
 \description{
 A Reference Class to a linear regression model.
@@ -11,8 +11,26 @@ A Reference Class to a linear regression model.
 \section{Fields}{
 
 \describe{
-\item{\code{formlua}}{an object of \code{\link{class}} \code{\link{formula}} (or one
-that can be coerced to that class): a symbolic description of the model to
-be fitted.}
+\item{\code{formula}}{an object of \code{\link{class}} \code{\link{formula}}: a
+symbolic description of the model to be fitted.}
+
+\item{\code{data}}{a data frame}
+
+\item{\code{cache}}{a list that contains cached values for results of methods
+\code{coef()}, \code{resid()}, \code{pred()} and the hash values of fields
+\code{formula} and \code{data} used to compute the output}
+}}
+\section{Methods}{
+
+\describe{
+\item{\code{coef()}}{Computes and returns coefficients of the model}
+
+\item{\code{isCached(methodName)}}{Checks whether the result of a method is stored in cache}
+
+\item{\code{pred()}}{Computes and returns predicted values of the model}
+
+\item{\code{resid()}}{Computes and returns residuals of the model}
+
+\item{\code{storeCache(methodName, value)}}{Stores result for the method, computes hash of data and stores it}
 }}
 

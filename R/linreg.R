@@ -50,6 +50,6 @@ linreg <- function(formula, data) {
   }
 
   # Body -----------------------------------------------------------------------
-  linregObject <- LinregClass$new(formula = formula, data = data)
+  linregObject <- Linreg$new(formula = formula, data = data)
   return(linregObject)
 }
