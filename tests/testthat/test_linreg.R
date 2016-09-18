@@ -13,7 +13,31 @@ context("Testing methods of LinregClass")
 lmObject <-         lm(formula = mpg ~ hp, data = mtcars)
 linregObject <- linreg(formula = mpg ~ hp, data = mtcars)
 test_that("Same as in lm", {
-  expect_that(linregObject$coef(), equals(lmObject$coefficients))
-  expect_that(linregObject$resid(),    equals(lmObject$residuals))
-  expect_that(linregObject$pred(),         equals(predict(lmObject)))
+  expect_that(linregObject$coef(),  equals(lmObject$coefficients))
+  expect_that(linregObject$resid(), equals(lmObject$residuals))
+  expect_that(linregObject$pred(),  equals(predict(lmObject)))
+})
+
+# Test caching
+lmObject <-         lm(formula = mpg ~ hp, data = mtcars)
+linregObject <- linreg(formula = mpg ~ hp, data = mtcars)
+
+# 1st and second call return the same result
+test_that("Cache: same results", {
+  expect_that(linregObject$coef(),  equals(lmObject$coefficients))
+  expect_that(linregObject$coef(),  equals(lmObject$coefficients))
+  expect_that(linregObject$resid(), equals(lmObject$residuals))
+  expect_that(linregObject$resid(), equals(lmObject$residuals))
+  expect_that(linregObject$pred(),  equals(predict(lmObject)))
+  expect_that(linregObject$pred(),  equals(predict(lmObject)))
+})
+
+# Check that object notices that formula/data has changed and recomputes
+lmObject <- lm(formula = mpg ~ gear, data = mtcars)
+linregObject$formula <- mpg ~ gear
+
+test_that("Cache: spot changes", {
+  expect_that(linregObject$coef(),  equals(lmObject$coefficients))
+  expect_that(linregObject$resid(), equals(lmObject$residuals))
+  expect_that(linregObject$pred(),  equals(predict(lmObject)))
 })
