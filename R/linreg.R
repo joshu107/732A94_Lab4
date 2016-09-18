@@ -44,6 +44,11 @@ linreg <- function(formula, data) {
     stop("variable(s) not in data")
   }
 
+  # as.data.frame(data) should contain at leas 1 row/column
+  if(!all(dim(data) > 0)) {
+    stop("data must have >=1 cols/rows")
+  }
+
   # Body -----------------------------------------------------------------------
   linregObject <- LinregClass$new(formula = formula, data = data)
   return(linregObject)

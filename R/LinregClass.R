@@ -1,8 +1,8 @@
 #' A Reference Class to a linear regression model.
 #'
-#' @field formlua an object of \code{\link{class}} \code{\link{formula}} (or one
-#'   that can be coerced to that class): a symbolic description of the model to
+#' @field formula an object of \code{\link{class}} \code{\link{formula}}: a symbolic description of the model to
 #'   be fitted.
+#' @field data a data frame
 "LinregClass"
 
 # Document structure:
@@ -151,13 +151,13 @@ predMethod <- function() {
   return(yHat)
 }
 printMethod<-function(x,...){
-
+  stop("Method not implemented")
 }
 plotMethod<-function(x,...){
-
+  stop("Method not implemented")
 }
 summaryMethod<- function(x,...){
-
+  stop("Method not implemented")
 }
 
 # Class ------------------------------------------------------------------------
