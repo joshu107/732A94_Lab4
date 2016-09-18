@@ -8,15 +8,17 @@
 #'   \code{formula} and \code{data} used to compute the output
 #'
 
-# Document structure:
-# 1. Define all methods used in class
-# 2. Define the class
-
-# Methods used in class --------------------------------------------------------
-isCachedMethod <-
-
-storeCacheMethod <-
-
+# How caching works
+#
+# 1. Before copmuting anything, check if the result is already stored in cache.
+# 2a. If the result is stored, then return it.
+# 2b. If the result is not stored, then compute it, save it in cache, return it
+#
+# Structure of the cache list:
+# cache$
+#       coef[["hash", "value"]]
+#       resid[["hash", "value"]]
+#       pree[["hash", "value"]]
 
 
 # Class ------------------------------------------------------------------------
