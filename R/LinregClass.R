@@ -137,8 +137,6 @@ Linreg <- setRefClass(
         stat_smooth(method="lm")+
         geom_hline(yintercept=0, col="red", linetype="dashed")+
         xlab("Fitted values")+
-        #try this instead
-        #xlab(paste("Fitted values\nlinreg(",.self$formula,")"))+
         ylab("Residuals")+
         ggtitle("Residual vs Fitted Plot")+
         theme_bw()
@@ -146,8 +144,6 @@ Linreg <- setRefClass(
       p2<-ggplot(model, aes(.fitted, sqrt(abs(.stdresid))))+
         geom_point(na.rm=TRUE)+
         stat_smooth(method="lm", na.rm = TRUE)+
-        #try this instead
-        #xlab(paste("Fitted values\nlinreg(",.self$formula,")"))+
         xlab("Fitted Value")+
         ylab(expression(sqrt("|Standardized residuals|")))+
         ggtitle("Scale-Location")+
@@ -158,7 +154,11 @@ Linreg <- setRefClass(
     ##not sure where to pull these values from
     summary = function(x,...){
       Call=paste("linreg(formula = ",.self$formula,")")
-      Coefficients="This needs to be a matrix of coefficients on rows and Estimate,std error, t value, p value on columns."
+      Coefficients="This needs to be a matrix of coefficients on rows and Estimate,std error, t value, p value on columns.  It should look like summary(lm(formula = Petal.Length ~ Species, data = iris))$coefficients"
+      #data.frame(rownames=c("(Intercept)",**Formula**),colnames=c("Estimate","Std. Error","t value","Pr(>|t|)"))
+      #[,1]<-
+      #[,2]<-
+      #etc.
       Variance="The variance is the square of the standard deviation, the second central moment of a distribution, and the covariance of the random variable with itself, sigma ^2"
       DofF="The number of parameters - 1"
       return(list(Call,Coefficients,Variance,DofF))
