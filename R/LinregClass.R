@@ -123,17 +123,17 @@ Linreg <- setRefClass(
       return(yHat)
     },
     print = function(digits = 3, ...){
-
-      cat("\nCall:\n", paste(deparse(x$call), sep = "\n", collapse = "\n"),
+      "Prints formula, data and coefficients of the object."
+      cat("\nCall:\n", paste(deparse(.self$call), sep = "\n", collapse = "\n"),
           "\n\n", sep = "")
-      if (length(coef(x))) {
+      if (length(.self$coef())) {
         cat("Coefficients:\n")
-        print.default(format(coef(x), digits = digits), print.gap = 2L,
+        print.default(format(.self$coef(), digits = digits), print.gap = 2L,
                       quote = FALSE)
       }
       else cat("No coefficients\n")
       cat("\n")
-      invisible(x)
+      invisible(.self)
     },
     plot = function(model){
       p1<-ggplot(model, aes(.fitted, .resid))+
