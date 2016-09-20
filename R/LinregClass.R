@@ -123,17 +123,29 @@ Linreg <- setRefClass(
       return(yHat)
     },
     print = function(digits = 3, ...){
-      "Prints formula, data and coefficients of the object."
+      "Prints a very brief summary of a Linreg object."
+      # This method is almost 100% based on print.lm()
+      #
+      # Args:
+      #   digits: the minimum number of significant digits to be printed in
+      #           values.
+      #   ...:    further arguments
+      #
+      # Returns
+      #   Prints a very brief summary of an object and invisibly returns it.
+
+      # Heading
       cat("\nCall:\n", paste(deparse(.self$call), sep = "\n", collapse = "\n"),
           "\n\n", sep = "")
-      if (length(.self$coef())) {
-        cat("Coefficients:\n")
-        print.default(format(.self$coef(), digits = digits), print.gap = 2L,
-                      quote = FALSE)
-      }
-      else cat("No coefficients\n")
+
+      # Coefficients
+      cat("Coefficients:\n")
+      #print(format(.self$coef(), digits = digits), print = 2L, quote = FALSE)
+      print.default(format(.self$coef(), digits = digits), print.gap = 2L,
+                   quote = FALSE)
       cat("\n")
-      invisible(.self)
+
+      return(invisible(.self$copy))
     },
     plot = function(model){
       p1<-ggplot(model, aes(.fitted, .resid))+
@@ -155,17 +167,26 @@ Linreg <- setRefClass(
 
       return(list(rvfPlot=p1, sclLocPlot=p2))
     },
-    ##not sure where to pull these values from
     summary = function(x,...){
-      Call=paste("linreg(formula = ",.self$formula,")")
-      Coefficients="This needs to be a matrix of coefficients on rows and Estimate,std error, t value, p value on columns.  It should look like summary(lm(formula = Petal.Length ~ Species, data = iris))$coefficients"
-      #data.frame(rownames=c("(Intercept)",**Formula**),colnames=c("Estimate","Std. Error","t value","Pr(>|t|)"))
-      #[,1]<-
-      #[,2]<-
-      #etc.
-      Variance="The variance is the square of the standard deviation, the second central moment of a distribution, and the covariance of the random variable with itself, sigma ^2"
-      DofF="The number of parameters - 1"
-      return(list(Call,Coefficients,Variance,DofF))
+      "Prints a summary of a Linreg object."
+      # This function is extensively built on summary.ln
+      # Args:
+      #
+      # Returns:
+
+      # Heading
+      cat("\nCall:\n", paste(deparse(.self$call), sep = "\n", collapse = "\n"),
+          "\n\n", sep = "")
+
+      # Coefficients
+      coef <- data.frame(Estimate = .self$coef())
+
+# LEFT WORK HERE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+      n <- nrow(.self$data)
+      resid <- .self$resid()
+      pred <- .self$pred()
+
     },
     isCached = function(methodName) {
       "Checks whether the result of a method is stored in cache"
@@ -177,7 +198,9 @@ Linreg <- setRefClass(
       # Returns:
       #   TRUE if the result is cached. FALSE if it is not.
 
-      devtools::use_package("digest")
+      suppressMessages( # without suppressing output of testthaat looks horrible
+        devtools::use_package("digest")
+      )
 
       # Check if it is NULL (never initialized)
       if (is.null(.self$cache[[methodName]]$hash)) {
@@ -204,7 +227,9 @@ Linreg <- setRefClass(
       # Returns:
       #   Nothing, but modifies fields of a Linreg object
 
-      devtools::use_package("digest")
+      suppressMessages( # without suppressing output of testthaat looks horrible
+        devtools::use_package("digest")
+      )
 
       # Calculate hash of the list with two objects
       # - formula
