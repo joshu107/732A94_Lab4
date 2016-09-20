@@ -17,6 +17,26 @@ context("Testing methods of Linreg class")
 # Compare results to lm function
 lmObject <-         lm(formula = mpg ~ hp, data = mtcars)
 linregObject <- linreg(formula = mpg ~ hp, data = mtcars)
+lmObjectNoConst <-         lm(formula = mpg ~ hp, data = mtcars)
+linregObjectNoConst <- linreg(formula = mpg ~ hp, data = mtcars)
+test_that("Same as in lm", {
+  expect_that(linregObject$coef(),  equals(lmObject$coefficients))
+  expect_that(linregObject$resid(), equals(lmObject$residuals))
+  expect_that(linregObject$pred(),  equals(predict(lmObject)))
+  expect_that(linregObject$print(),  equals(NULL))
+  expect_that(linregObject$plot(),  equals(NULL))
+  expect_that(linregObject$summary(),  equals(NULL))
+  expect_that(linregObjectNoConst$coef(),  equals(lmObjectNoConst$coefficients))
+  expect_that(linregObjectNoConst$resid(), equals(lmObjectNoConst$residuals))
+  expect_that(linregObjectNoConst$pred(),  equals(lmObjectNoConst(lmObject)))
+  expect_that(linregObjectNoConst$print(),  equals(NULL))
+  expect_that(linregObjectNoConst$plot(),  equals(NULL))
+  expect_that(linregObjectNoConst$summary(),  equals(NULL))
+})
+
+# Compare results to lm function
+lmObject <-         lm(formula = mpg ~ hp, data = mtcars)
+linregObject <- linreg(formula = mpg ~ hp, data = mtcars)
 test_that("Same as in lm", {
   expect_that(linregObject$coef(),  equals(lmObject$coefficients))
   expect_that(linregObject$resid(), equals(lmObject$residuals))
