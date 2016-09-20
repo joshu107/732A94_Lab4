@@ -121,14 +121,14 @@ Linreg <- setRefClass(
 
       return(yHat)
     },
-    #needs to be in the format of 
+    #needs to be in the format of
     #dd <- lm(formula = Petal.Length ~ Species, data = iris)
     #print(dd)
     print = function(x,...){
       #This is to emulate the lm() printout
       print(list(Call=paste("linreg(formula = ",.self$formula,")"),(Coefficients=.self$coef())))
     },
-    #needs to be in the format of 
+    #needs to be in the format of
     #dd <- lm(formula = Petal.Length ~ Species, data = iris)
     #plot(dd)
     plot = function(model){
@@ -140,7 +140,7 @@ Linreg <- setRefClass(
         ylab("Residuals")+
         ggtitle("Residual vs Fitted Plot")+
         theme_bw()
-      
+
       p2<-ggplot(model, aes(.fitted, sqrt(abs(.stdresid))))+
         geom_point(na.rm=TRUE)+
         stat_smooth(method="lm", na.rm = TRUE)+
@@ -148,7 +148,7 @@ Linreg <- setRefClass(
         ylab(expression(sqrt("|Standardized residuals|")))+
         ggtitle("Scale-Location")+
         theme_bw()
-      
+
       return(list(rvfPlot=p1, sclLocPlot=p2))
     },
     ##not sure where to pull these values from
@@ -180,8 +180,8 @@ Linreg <- setRefClass(
         return(FALSE)
       }
 
-      # Check if hash of current data, formula is the same as it was when cache was
-      # computed
+      # Check if hash of current data, formula is the same as it was when cache
+      # was computed
       currentHash <- digest::digest(list(.self$formula, .self$data), algo = "md5")
       if (currentHash == .self$cache[[methodName]]$hash) {
         return(TRUE)
@@ -202,7 +202,11 @@ Linreg <- setRefClass(
 
       require(digest)
 
+      # Calculate hash of the list with two objects
+      # - formula
+      # - data
       currentHash <- digest::digest(list(.self$formula, .self$data), algo = "md5")
+      # Store hash in the cache list under the appropriate method
       .self$cache[[methodName]] <- list(
        hash = currentHash,
        value = value
