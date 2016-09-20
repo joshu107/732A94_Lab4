@@ -50,6 +50,8 @@ linreg <- function(formula, data) {
   }
 
   # Body -----------------------------------------------------------------------
-  linregObject <- Linreg$new(formula = formula, data = data)
+  linregObject <- Linreg$new(formula = formula,
+                             data = data,
+                             call = match.call())
   return(linregObject)
 }
