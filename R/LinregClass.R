@@ -121,14 +121,47 @@ Linreg <- setRefClass(
 
       return(yHat)
     },
+    #needs to be in the format of 
+    #dd <- lm(formula = Petal.Length ~ Species, data = iris)
+    #print(dd)
     print = function(x,...){
-      stop("Method not implemented")
+      #This is to emulate the lm() printout
+      print(list(Call=paste("linreg(formula = ",.self$formula,")"),(Coefficients=.self$coef())))
     },
-    plot = function(x,...){
-      stop("Method not implemented")
+    #needs to be in the format of 
+    #dd <- lm(formula = Petal.Length ~ Species, data = iris)
+    #plot(dd)
+    plot = function(model){
+      p1<-ggplot(model, aes(.fitted, .resid))+
+        geom_point()+
+        stat_smooth(method="lm")+
+        geom_hline(yintercept=0, col="red", linetype="dashed")+
+        xlab("Fitted values")+
+        #try this instead
+        #xlab(paste("Fitted values\nlinreg(",.self$formula,")"))+
+        ylab("Residuals")+
+        ggtitle("Residual vs Fitted Plot")+
+        theme_bw()
+      
+      p2<-ggplot(model, aes(.fitted, sqrt(abs(.stdresid))))+
+        geom_point(na.rm=TRUE)+
+        stat_smooth(method="lm", na.rm = TRUE)+
+        #try this instead
+        #xlab(paste("Fitted values\nlinreg(",.self$formula,")"))+
+        xlab("Fitted Value")+
+        ylab(expression(sqrt("|Standardized residuals|")))+
+        ggtitle("Scale-Location")+
+        theme_bw()
+      
+      return(list(rvfPlot=p1, sclLocPlot=p2))
     },
+    ##not sure where to pull these values from
     summary = function(x,...){
-      stop("Method not implemented")
+      Call=paste("linreg(formula = ",.self$formula,")")
+      Coefficients="This needs to be a matrix of coefficients on rows and Estimate,std error, t value, p value on columns."
+      Variance="The variance is the square of the standard deviation, the second central moment of a distribution, and the covariance of the random variable with itself, sigma ^2"
+      DofF="The number of parameters - 1"
+      return(list(Call,Coefficients,Variance,DofF))
     },
     isCached = function(methodName) {
       "Checks whether the result of a method is stored in cache"
