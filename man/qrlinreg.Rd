@@ -4,7 +4,7 @@
 \alias{qrlinreg}
 \title{Perform linear regression}
 \usage{
-qrlinreg()
+qrlinreg(x, y, ...)
 }
 \arguments{
 \item{formlua}{an object of \code{\link{class}} \code{\link{formula}} (or one
@@ -15,7 +15,7 @@ be fitted.}
 \code{\link{as.data.frame}}).}
 }
 \value{
-THIS NEEDS TO BE CHANGED \code{qrlinreg} returns an
+\code{qrlinreg} returns an
  object of class "\code{Linreg}".
 
   An object of class "\code{Linreg}" have the following methods:
@@ -34,6 +34,6 @@ qrlinreg(TRUE, TRUE)
 }
 }
 \seealso{
-\code{\link{lm}}, \code{\link{class}}, \code{\link{formula}}
+\code{\link{qr}}, \code{\link{class}}, \code{\link{formula}}
 }
 

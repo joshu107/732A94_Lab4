@@ -173,7 +173,7 @@ Linreg <- setRefClass(
       # Returns:
       #   TRUE if the result is cached. FALSE if it is not.
 
-      require(digest)
+      devtools::use_package("digest")
 
       # Check if it is NULL (never initialized)
       if (is.null(.self$cache[[methodName]]$hash)) {
@@ -200,7 +200,7 @@ Linreg <- setRefClass(
       # Returns:
       #   Nothing, but modifies fields of a Linreg object
 
-      require(digest)
+      devtools::use_package("digest")
 
       # Calculate hash of the list with two objects
       # - formula
