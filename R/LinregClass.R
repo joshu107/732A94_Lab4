@@ -212,7 +212,7 @@ Linreg <- setRefClass(
        value = value
       )
 
-     return(currentHash)
+     return(invisible(currentHash))
     }
   )
 )
