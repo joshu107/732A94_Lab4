@@ -2,8 +2,8 @@
 % Please edit documentation in R/LinregClass.R
 \docType{class}
 \name{Linreg-class}
+\alias{Linreg}
 \alias{Linreg-class}
-\alias{isCachedMethod}
 \title{A Reference Class to a linear regression model.}
 \description{
 A Reference Class to a linear regression model.

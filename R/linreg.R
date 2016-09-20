@@ -26,6 +26,9 @@
 #' @export
 
 linreg <- function(formula, data) {
+  suppressMessages( # without suppressing output of testthaat looks horrible
+    devtools::use_package("Matrix")
+  )
   # Error handling -------------------------------------------------------------
   # Check whether inputs can be coerced to formula and data.frame
   canCoerse <- TRUE
@@ -47,6 +50,13 @@ linreg <- function(formula, data) {
   # as.data.frame(data) should contain at leas 1 row/column
   if(!all(dim(data) > 0)) {
     stop("data must have >=1 cols/rows")
+  }
+
+  # check for multicollinearity of regressors
+  regressors <- model.matrix(formula, data)
+  regressorsRank <- Matrix::rankMatrix(regressors)
+  if (regressorsRank < ncol(regressors)) {
+    stop("multicollinearity of regressors")
   }
 
   # Body -----------------------------------------------------------------------
