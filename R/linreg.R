@@ -63,5 +63,5 @@ linreg <- function(formula, data) {
   linregObject <- Linreg$new(formula = formula,
                              data = data,
                              call = match.call())
-  return(linregObject)
+  return(invisible(linregObject))
 }
