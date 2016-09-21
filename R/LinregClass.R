@@ -69,7 +69,7 @@ Linreg <- setRefClass(
 
       # Check if the result is already cached
       if (isCached("resid")) {
-        retur(.self$cache$resid$value)
+        return(.self$cache$resid$value)
       }
 
       # Extract X matrix and Y matrix (vector) from data and formula
@@ -148,18 +148,18 @@ Linreg <- setRefClass(
       return(invisible(.self$copy))
     },
     plot = function(model){
-      p1<-ggplot(model, aes(.fitted, .resid))+
+      X<-data.frame(pred=.self$pred(),resid=.self$resid())
+      p1<-ggplot(X, aes(pred, resid))+
         geom_point()+
-        stat_smooth(method="lm")+
-        geom_hline(yintercept=0, col="red", linetype="dashed")+
+        geom_smooth(method="lm", color="red")+
         xlab("Fitted values")+
         ylab("Residuals")+
         ggtitle("Residual vs Fitted Plot")+
         theme_bw()
 
-      p2<-ggplot(model, aes(.fitted, sqrt(abs(.stdresid))))+
+      p2<-ggplot(X, aes(pred, sqrt(abs(scale(resid)))))+
         geom_point(na.rm=TRUE)+
-        stat_smooth(method="lm", na.rm = TRUE)+
+        geom_smooth(method="lm", na.rm = TRUE, color="red")+
         xlab("Fitted Value")+
         ylab(expression(sqrt("|Standardized residuals|")))+
         ggtitle("Scale-Location")+

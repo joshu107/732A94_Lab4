@@ -29,8 +29,12 @@ symbolic description of the model to be fitted.}
 
 \item{\code{pred()}}{Computes and returns predicted values of the model}
 
+\item{\code{print(digits = 3, ...)}}{Prints a very brief summary of a Linreg object.}
+
 \item{\code{resid()}}{Computes and returns residuals of the model}
 
 \item{\code{storeCache(methodName, value)}}{Stores result for the method, computes hash of data and stores it}
+
+\item{\code{summary(x, ...)}}{Prints a summary of a Linreg object.}
 }}
 
