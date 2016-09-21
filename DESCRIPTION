@@ -1,5 +1,5 @@
 Package: LiuLinReg
-Title: Description placeholder.
+Title: An alternate regression method
 Version: 0.0.0.9000
 Authors@R: as.person(c(
     "Torrin Danner <torda385@student.liu.se> [aut]",
@@ -11,7 +11,7 @@ Maintainer: Sascha Schmalz <sassc662@student.liu.se>
 Description: This package provides a hand-crafted method of evaluating linear regression models.
 Depends:
     R (>= 3.3.1)
-License: GPLv3
+License: GPL (>= 3.0)
 Encoding: UTF-8
 LazyData: true
 Imports:
