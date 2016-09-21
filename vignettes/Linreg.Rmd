@@ -55,17 +55,29 @@ The `print()` function will show you the specifications of the Linreg object, it
 tmp$print()
 ```
 
-The `resid()` function will return a vector of the residuals:
+The `resid()` function will return a vector of the residuals of the linear regression model:
 ```{r}
-tmp$resid()
+residuals <- tmp$resid()
+head(residuals, 10)
 ```
 
+The `pred()` function will return a vector of the predicted values of the linear regression model:
+```{r}
+predicted <- tmp$pred()
+head(predicted, 10)
+```
 
+The `coef()` function will return the coefficients of the linear regression model:
+```{r}
+tmp$coef()
+```
 
+The `summary()` function will return the standard error, t-value, p-value, the estimate of $\hat{\sigma}$ and the degrees of freedom of the linear regression model:
+```{r}
+tmp$summary()
+```
 
-
-
-Also a quote using `>`:
-
-> "He who gives up [code] safety for [code] speed deserves neither."
-([via](https://twitter.com/hadleywickham/status/504368538874703872))
+The `plot()` function will plot the residuals vs. the fitted values as well as the scale location using `ggplot2`:
+```{r}
+tmp$plot()
+```
