@@ -19,7 +19,8 @@ Imports:
     digest,
     Matrix,
     knitr,
-    rmarkdown
+    rmarkdown,
+    methods
 Suggests:
     testthat
 RoxygenNote: 5.0.1
