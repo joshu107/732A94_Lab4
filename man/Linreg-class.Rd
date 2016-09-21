@@ -35,6 +35,6 @@ symbolic description of the model to be fitted.}
 
 \item{\code{storeCache(methodName, value)}}{Stores result for the method, computes hash of data and stores it}
 
-\item{\code{summary(x, ...)}}{Prints a summary of a Linreg object.}
+\item{\code{summary(digits = 3, ...)}}{Prints a summary of a Linreg object.}
 }}
 
