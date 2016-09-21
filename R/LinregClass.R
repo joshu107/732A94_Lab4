@@ -69,7 +69,7 @@ Linreg <- setRefClass(
 
       # Check if the result is already cached
       if (isCached("resid")) {
-        retur(.self$cache$resid$value)
+        return(.self$cache$resid$value)
       }
 
       # Extract X matrix and Y matrix (vector) from data and formula
@@ -124,7 +124,7 @@ Linreg <- setRefClass(
     },
     print = function(digits = 3, ...){
       "Prints a very brief summary of a Linreg object."
-      # This method is almost 100% based on print.lm()
+      # This method is extensively based on print.lm()
       #
       # Args:
       #   digits: the minimum number of significant digits to be printed in
@@ -167,12 +167,19 @@ Linreg <- setRefClass(
 
       return(list(rvfPlot=p1, sclLocPlot=p2))
     },
-    summary = function(x,...){
+    summary = function(digits = 3, ...){
       "Prints a summary of a Linreg object."
-      # This function is extensively built on summary.ln
-      # Args:
+      # This method is loosely based on summary.lm()
       #
-      # Returns:
+      # Args:
+      #   digits: the minimum number of significant digits to be printed in
+      #           values.
+      #   ...:    further arguments
+      #
+      # Returns
+      #   Prints a summary of an object and invisibly returns it.
+      n <- nrow(.self$data)
+      df <- n - (length(.self$coef()))
 
       # Heading
       cat("\nCall:\n", paste(deparse(.self$call), sep = "\n", collapse = "\n"),
@@ -181,12 +188,41 @@ Linreg <- setRefClass(
       # Coefficients
       coef <- data.frame(Estimate = .self$coef())
 
-# LEFT WORK HERE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+      # Standard errors
+      sigmaHat <- 1 / df * sum(.self$resid()^2)
+      X <- model.matrix(.self$formula, .self$data)
+      varCovar <- sigmaHat * solve(t(X) %*% X)
+      se <- sqrt(diag(varCovar))
+      coef[["Std. Error"]] <- se
 
-      n <- nrow(.self$data)
-      resid <- .self$resid()
-      pred <- .self$pred()
+      # t-values
+      tstat <- coef[["Estimate"]] / se
+      coef[["t value"]] <- tstat
 
+      # p-value
+      pval <- 2 * pt(abs(coef[["t value"]]), df, lower.tail = FALSE)
+      coef[["Pr(>|t|)"]] <- pval
+
+      # asterisks
+      asterisks <- ifelse(pval < 0.0001, "***",
+                          ifelse(pval < 0.001, "**",
+                                 ifelse(pval < 0.05, "*",
+                                        ifelse(pval < 0.1, ".", ""))))
+      coef[[" "]] <- asterisks
+
+      # Print coefficients table
+      cat("Coefficients:\n")
+      print.data.frame(coef, digits = digits)
+      cat("---\n")
+      cat("Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1")
+      cat("\n\n")
+
+      # Degrees of freedom
+      cat("Residual standard error:",
+          format(sqrt(sigmaHat), digits = digits), "on",
+          df, "degrees of freedom")
+
+      return(invisible(.self))
     },
     isCached = function(methodName) {
       "Checks whether the result of a method is stored in cache"
