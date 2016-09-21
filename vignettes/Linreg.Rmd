@@ -77,8 +77,8 @@ The `summary()` function will return the standard error, t-value, p-value, the e
 tmp$summary()
 ```
 
-The `plot()` function will plot the residuals vs. the fitted values as well as the scale location using `ggplot2`. (You should load the package ggplot2 )
-```{r}
+The `plot()` function will plot the residuals vs. the fitted values as well as the scale location using `ggplot2`. (The `plot()` function requires the package `ggplot2`.)
+```{r, results = 'hide'}
 require(ggplot2)
 tmp$plot()
 ```
