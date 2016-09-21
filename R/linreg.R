@@ -11,8 +11,8 @@
 #' @return \code{linreg} returns an object of class "\code{Linreg}".
 #'
 #'   An object of class "\code{Linreg}" have the following methods:
-#'   \item{coefficients()}{a named vector of coefficients}
-#'   \item{residuals()}{the residuals, that is response minus fitted values}
+#'   \item{coef()}{a named vector of coefficients}
+#'   \item{resid()}{the residuals, that is response minus fitted values}
 #'   \item{pred()}{predicted values of of a model}
 #'
 #' @seealso \code{\link{lm}}, \code{\link{class}}, \code{\link{formula}}

@@ -21,7 +21,8 @@ Imports:
     knitr,
     rmarkdown,
     methods,
-    devtools
+    devtools,
+    pryr
 Suggests:
     testthat
 RoxygenNote: 5.0.1

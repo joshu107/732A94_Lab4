@@ -15,6 +15,10 @@ The __LiuLinReg__ package is an alternative package to the lm package to make a 
 
 Use the `linreg(formula, data)` function to create a `Linreg` object.
 
+```{r, echo = FALSE, message = FALSE}
+devtools::use_package("pryr")
+```
+
 ```{r, results = 'hide'}
 library(LiuLinReg)
 data(iris)
@@ -78,8 +82,12 @@ tmp$summary()
 ```
 
 The `plot()` function will plot the residuals vs. the fitted values as well as the scale location using `ggplot2`. (The `plot()` function requires the package `ggplot2`.)
-```{r, results = 'hide'}
-require(ggplot2)
+
+```{r, echo = FALSE, message = FALSE}
+devtools::use_package("ggplot2")
+```
+
+```{r, results = 'hide', message = FALSE, fig.width = 5}
 tmp$plot()
 ```
 
