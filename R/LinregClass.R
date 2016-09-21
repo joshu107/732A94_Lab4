@@ -156,7 +156,7 @@ Linreg <- setRefClass(
         ylab("Residuals")+
         ggtitle("Residual vs Fitted Plot")+
         theme_bw()
-      readline(prompt = "Pause. Press <Enter> to continue...")
+      
       p2<-ggplot(X, aes(pred, sqrt(abs(scale(resid)))))+
         geom_point(na.rm=TRUE)+
         geom_smooth(method="lm", na.rm = TRUE, color="red")+
@@ -165,15 +165,7 @@ Linreg <- setRefClass(
         ggtitle("Scale-Location")+
         theme_bw()
       
-
-      for(i in 1:2){
-        plotName <- paste("p",i,sep="")
-        print(plotName)
-        oask <- devAskNewPage(TRUE)
-        on.exit(devAskNewPage(oask))
-      }
-      par(ask=FALSE)
-      return(invisible(.self))
+      return(list(rvfPlot=p1, sclLocPlot=p2))
     },
     summary = function(x,...){
       "Prints a summary of a Linreg object."
