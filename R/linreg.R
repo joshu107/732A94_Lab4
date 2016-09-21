@@ -2,7 +2,7 @@
 #'
 #' Use \code{linreg} to perform linear regressions.
 #'
-#' @param formlua an object of \code{\link{class}} \code{\link{formula}} (or one
+#' @param formula an object of \code{\link{class}} \code{\link{formula}} (or one
 #'   that can be coerced to that class): a symbolic description of the model to
 #'   be fitted.
 #' @param data a data frame or (or object coercible by

@@ -148,6 +148,7 @@ Linreg <- setRefClass(
       return(invisible(.self$copy))
     },
     plot = function(){
+      "Plots Residuals vs. Fits and Scale-Location graphs."
       X<-data.frame(pred=.self$pred(),resid=.self$resid())
       p1<-ggplot(X, aes(pred, resid))+
         geom_point()+
