@@ -15,7 +15,7 @@ The __LiuLinReg__ package is an alternative package to the lm package to make a 
 
 Use the `linreg(formula, data)` function to create a `Linreg` object.
 
-```{r, echo = FALSE, results = 'hide'}
+```{r, echo = FALSE, message = FALSE}
 devtools::use_package("pryr")
 ```
 
