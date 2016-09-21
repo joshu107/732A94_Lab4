@@ -81,3 +81,4 @@ The `plot()` function will plot the residuals vs. the fitted values as well as t
 ```{r}
 tmp$plot()
 ```
+
