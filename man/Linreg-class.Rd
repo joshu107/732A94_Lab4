@@ -27,6 +27,8 @@ symbolic description of the model to be fitted.}
 
 \item{\code{isCached(methodName)}}{Checks whether the result of a method is stored in cache}
 
+\item{\code{plot()}}{Plots Residuals vs. Fits and Scale-Location graphs.}
+
 \item{\code{pred()}}{Computes and returns predicted values of the model}
 
 \item{\code{print(digits = 3, ...)}}{Prints a very brief summary of a Linreg object.}

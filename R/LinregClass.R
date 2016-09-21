@@ -18,7 +18,7 @@
 # cache$
 #       coef[["hash", "value"]]
 #       resid[["hash", "value"]]
-#       pree[["hash", "value"]]
+#       pred[["hash", "value"]]
 
 
 # Class ------------------------------------------------------------------------
@@ -149,6 +149,7 @@ Linreg <- setRefClass(
     },
     plot = function(){
       "Plots Residuals vs. Fits and Scale-Location graphs."
+      require(ggplot2)
       X<-data.frame(pred=.self$pred(),resid=.self$resid())
       p1<-ggplot(X, aes(pred, resid))+
         geom_point()+
