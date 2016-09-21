@@ -17,10 +17,10 @@ LazyData: true
 Imports:
     ggplot2,
     digest,
-    Matrix
-Suggests:
-    testthat,
+    Matrix,
     knitr,
     rmarkdown
+Suggests:
+    testthat
 RoxygenNote: 5.0.1
 VignetteBuilder: knitr
