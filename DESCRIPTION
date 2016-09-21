@@ -20,7 +20,8 @@ Imports:
     Matrix,
     knitr,
     rmarkdown,
-    methods
+    methods,
+    devtools
 Suggests:
     testthat
 RoxygenNote: 5.0.1

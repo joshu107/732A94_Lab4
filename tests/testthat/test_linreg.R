@@ -2,7 +2,7 @@
 context("Test linreg inputs")
 # Data frame with multicollinearity issues
 dfMulticol <- data.frame(y = rnorm(3), x = rep(1,3), z = rep(2,3))
-test_that("Wrong parameters", {
+test_that("wrong parameters", {
   expect_error(linreg(function(x) {}, "data"),    "wrong parameters")
   expect_error(linreg("formula", function(x) {}), "wrong parameters")
   expect_error(linreg(X ~ Sepal.Width, data = iris), "variable(s) not in data",
