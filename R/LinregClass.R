@@ -10,7 +10,7 @@
 
 # How caching works
 #
-# 1. Before copmuting anything, check if the result is already stored in cache.
+# 1. Before computing anything, check if the result is already stored in cache.
 # 2a. If the result is stored, then return it.
 # 2b. If the result is not stored, then compute it, save it in cache, return it
 #
@@ -18,7 +18,7 @@
 # cache$
 #       coef[["hash", "value"]]
 #       resid[["hash", "value"]]
-#       pree[["hash", "value"]]
+#       pred[["hash", "value"]]
 
 
 # Class ------------------------------------------------------------------------
@@ -147,24 +147,26 @@ Linreg <- setRefClass(
 
       return(invisible(.self$copy))
     },
-    plot = function(model){
+    plot = function(){
+      "Plots Residuals vs. Fits and Scale-Location graphs."
+      require(ggplot2)
       X<-data.frame(pred=.self$pred(),resid=.self$resid())
       p1<-ggplot(X, aes(pred, resid))+
         geom_point()+
-        geom_smooth(method="lm", color="red")+
-        xlab("Fitted values")+
+        geom_smooth(method="lm", na.rm=TRUE, color="red")+
+        xlab(paste("Fitted Values\n",deparse(.self$call)))+
         ylab("Residuals")+
         ggtitle("Residual vs Fitted Plot")+
         theme_bw()
-
+      
       p2<-ggplot(X, aes(pred, sqrt(abs(scale(resid)))))+
         geom_point(na.rm=TRUE)+
         geom_smooth(method="lm", na.rm = TRUE, color="red")+
-        xlab("Fitted Value")+
+        xlab(paste("Fitted Values\n",deparse(.self$call)))+
         ylab(expression(sqrt("|Standardized residuals|")))+
         ggtitle("Scale-Location")+
         theme_bw()
-
+      
       return(list(rvfPlot=p1, sclLocPlot=p2))
     },
     summary = function(digits = 3, ...){
