@@ -7,12 +7,12 @@
 linreg(formula, data)
 }
 \arguments{
-\item{data}{a data frame or (or object coercible by
-\code{\link{as.data.frame}}).}
-
-\item{formlua}{an object of \code{\link{class}} \code{\link{formula}} (or one
+\item{formula}{an object of \code{\link{class}} \code{\link{formula}} (or one
 that can be coerced to that class): a symbolic description of the model to
 be fitted.}
+
+\item{data}{a data frame or (or object coercible by
+\code{\link{as.data.frame}}).}
 }
 \value{
 \code{linreg} returns an object of class "\code{Linreg}".
