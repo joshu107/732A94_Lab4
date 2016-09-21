@@ -1,5 +1,5 @@
 ---
-title: "Linear Regression with Linreg"
+title: "Linear Regression with LiuLinReg"
 author: "Torrin Danner, Nickolajs Prihodko, Joshua Hudson, Sascha Schmalz"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
@@ -9,48 +9,61 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-Vignettes are long form documentation commonly included in packages. Because they are part of the distribution of the package, they need to be as compact as possible. The `html_vignette` output type provides a custom style sheet (and tweaks some options) to ensure that the resulting html is as small as possible. The `html_vignette` format:
+The __LiuLinReg__ package is an alternative package to the lm package to make a linear regression. This document is not an introduction to linear regression. Furthermore it shall guide you to use the functions of the __LiuLinReg__ to perform a linear regression. The calculations are based on the `iris` dataset.
 
-- Never uses retina figures
-- Has a smaller default figure size
-- Uses a custom CSS stylesheet instead of the default Twitter Bootstrap style
+## Creating a Linreg object
 
-## Vignette Info
+Use the `linreg(formula, data)` function to create a `Linreg` object.
 
-Note the various macros within the `vignette` section of the metadata block above. These are required in order to instruct R how to build the vignette. Note that you should change the `title` field and the `\VignetteIndexEntry` to match the title of your vignette.
+```{r, results = 'hide'}
+library(LiuLinReg)
+data(iris)
 
-## Styles
-
-The `html_vignette` template includes a basic CSS theme. To override this theme you can specify your own CSS in the document metadata as follows:
-
-    output: 
-      rmarkdown::html_vignette:
-        css: mystyles.css
-
-## Figures
-
-The figure sizes have been customised so that you can easily put two images side-by-side. 
-
-```{r, fig.show='hold'}
-plot(1:10)
-plot(10:1)
+tmp <- linreg(formula = Sepal.Length ~ Sepal.Width, data = iris)
+pryr::otype(tmp)
 ```
 
-You can enable figure captions by `fig_caption: yes` in YAML:
-
-    output:
-      rmarkdown::html_vignette:
-        fig_caption: yes
-
-Then you can use the chunk option `fig.cap = "Your figure caption."` in **knitr**.
-
-## More Examples
-
-You can write math expressions, e.g. $Y = X\beta + \epsilon$, footnotes^[A footnote here.], and tables, e.g. using `knitr::kable()`.
-
-```{r, echo=FALSE, results='asis'}
-knitr::kable(head(mtcars, 10))
+The `Linreg` object will be of class `RC`. Using `otype()` out of the `pryr` package will return:
+```{r}
+pryr::otype(tmp)
 ```
+
+The `Linreg` object is the starting point for the linear regression. It will allow you to perform several operations on the object.
+
+## Operations on a Linreg object
+
+So far the following functions are implemented:
+
+| Function  | Description                                                               |
+|-----------|---------------------------------------------------------------------------|
+| print()   | prints the coefficients and the coeffienct names                          |
+| resid()   | returns a vector of residuals $e$                                         |
+| pred()    | returns predicted values $\hat{y}$                                        |
+| coef()    | returns coefficients as a named vector                                    |
+| summary() | returns the standard error, t-value, p-value, the estimate of $\hat{\sigma}$ and the degrees of freedom |
+| plot()    | plots 'Residuals vs. Fitted' and 'Scale-Location' using `ggplot2`         |
+
+In the following you will find a detailed description to each of the functions.
+
+## How to call functions
+
+In general a function is called by `tmp$functionname` where `tmp` is a `Linreg` object. In the following you will find an overview of all functions and the corresponding outpouts. 
+
+The `print()` function will show you the specifications of the Linreg object, its coefficients and the name of its coefficients.
+
+```{r}
+tmp$print()
+```
+
+The `resid()` function will return a vector of the residuals:
+```{r}
+tmp$resid()
+```
+
+
+
+
+
 
 Also a quote using `>`:
 
