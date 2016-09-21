@@ -8,10 +8,10 @@
 course.}
 \description{
 The package provides six functions to manipulate linear regression
-models within a new class {\code{\link{LinregClass}}}: \itemize{
+models within a new class {\code{LinregClass}}: \itemize{
 \item{\code{\link{coef}} returns the coefficients as a named vector.}
 \item{\code{\link{resid}} returns the vector of residuals e.}
-\item{\code{\link{pred}} returns the predicted values.}
+\item{\code{pred} returns the predicted values.}
 \item{\code{\link{print}} prints the coefficients and coefficient names.}
 \item{\code{\link{plot}} creates two plots, residuals vs. fitted values and
 square root of residuals vs. fitted values.}

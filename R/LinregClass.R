@@ -10,7 +10,7 @@
 
 # How caching works
 #
-# 1. Before copmuting anything, check if the result is already stored in cache.
+# 1. Before computing anything, check if the result is already stored in cache.
 # 2a. If the result is stored, then return it.
 # 2b. If the result is not stored, then compute it, save it in cache, return it
 #
