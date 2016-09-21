@@ -79,7 +79,7 @@ tmp$summary()
 
 The `plot()` function will plot the residuals vs. the fitted values as well as the scale location using `ggplot2`. (You should load the package ggplot2 )
 ```{r}
-library(ggplot2)
+require(ggplot2)
 tmp$plot()
 ```
 
