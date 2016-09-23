@@ -1,3 +1,6 @@
+## ---- echo = FALSE, message = FALSE--------------------------------------
+devtools::use_package("pryr")
+
 ## ---- results = 'hide'---------------------------------------------------
 library(LiuLinReg)
 data(iris)
@@ -25,7 +28,9 @@ tmp$coef()
 ## ------------------------------------------------------------------------
 tmp$summary()
 
-## ---- results = 'hide'---------------------------------------------------
-require(ggplot2)
+## ---- echo = FALSE, message = FALSE--------------------------------------
+devtools::use_package("ggplot2")
+
+## ---- results = 'hide', message = FALSE, fig.width = 5-------------------
 tmp$plot()
 
