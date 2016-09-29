@@ -10,7 +10,7 @@ Authors@R: as.person(c(
 Maintainer: Sascha Schmalz <sassc662@student.liu.se>
 Description: This package provides a hand-crafted method of evaluating linear regression models.
 Depends:
-    R (>= 3.3.1)
+    R (>= 3.2.3)
 License: GPL (>= 3.0)
 Encoding: UTF-8
 LazyData: true
